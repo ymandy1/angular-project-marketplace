@@ -7,33 +7,38 @@
   <title>projeto</title>
 </head>
 <body>
-<div>
+  <div *ngIf="showErrorMessages" class="alert alert-danger" role="alert">
+    Erro ao cadastrar usuário!
+  </div>
+<div id="formContainer" class="d-flex flex-column justify-content-center align-items-center p-2">
+
   <h2>CADASTRO<br>
-  <span>faça seu cadastro</span></h2>
-  <form>
+  <span>Faça seu cadastro</span></h2>
+    
     <div class="input-container">
       <label for="username">
         <i class="fas fa-user"></i>Nome:
       </label>
-      <input type="text" id="username" placeholder="nome" name="username" required>
+      <input type="text" id="username" placeholder="Insira seu nome" name="username" class="form-control" [formControl]="username">
     </div>
     <div class="input-container">
-      <label for="username">
+      <label for="email">
         <i class="fa-solid fa-envelope"></i>Email:
       </label>
-      <input type="text" id="email" placeholder="email" name="email" required>
+      <input type="text" id="email" placeholder="Insira seu email" name="email" class="form-control" [formControl]="email">
     </div>
     <div class="input-container">
-      <label for="username">
+      <label for="password">
         <i class="fa-solid fa-key"></i>Senha:
       </label>
-      <input type="text" id="senha" placeholder="senha" name="senha" required>
+      <input type="password" id="senha" placeholder="     Insira sua senha" name="senha" class="form-control" [formControl]="password">
     </div>
 
-    <button type="submit">Entrar</button>
-    <a class="new_account">Já tem uma conta?</a>
-    <a class="sign_up" (click)="redirecionarParaLogin()" >Fazer login</a>
-  </form>
+    <button class="btn btn-primary" (click)="cadastrarUsuario()">Cadastrar</button>
+    <br>
+    <a class="sign_up" (click)="redirecionarParaLogin()" >Já tem conta? Fazer login</a>
+    <br>
+  
 </div>
 </body>
 </html>
