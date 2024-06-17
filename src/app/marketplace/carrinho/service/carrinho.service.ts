@@ -44,10 +44,18 @@ export class CarrinhoService {
     });
   }
 
-  excluir(key: any) {
-    return this.db.object('carrinhos/' + key).remove();
+  removerProduto(userId: string, produto: ProdutoModel) {
+    const ref = this.db.object<CarrinhoModel>(`carrinhos/${userId}`);
+    ref.valueChanges().pipe(take(1)).subscribe(carrinho => {
+      if (carrinho && Array.isArray(carrinho.produtos)) {
+        const index = carrinho.produtos.findIndex(p => p.nome === produto.nome);
+        if (index > -1) {
+          carrinho.produtos.splice(index, 1);
+          ref.update(carrinho);
+        }
+      }
+    });
   }
-
   carregar(key: any): Observable<any> {
     return this.db.object('carrinhos/' + key).valueChanges();
   }

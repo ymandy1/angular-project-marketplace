@@ -28,8 +28,7 @@
             <h5 class="card-title">{{ data.nome }}</h5>
             <p class="card-text">{{ data.descricao }}</p>
             <p class="card-text">{{ data.preco }}</p>
-            <button class="btn btn-danger">Remover</button>
-            
+            <button (click)="removerDoCarrinho(data)" class="btn btn-danger" >Remover</button>
         </div>
     </div>
 </div>

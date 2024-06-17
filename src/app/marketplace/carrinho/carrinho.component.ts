@@ -63,6 +63,10 @@ export class CarrinhoComponent {
     this.carrinhoService.adicionarProduto(this.userId, plant);
   }
 
+  removerDoCarrinho(plant: any) {
+    this.carrinhoService.removerProduto(this.userId, plant);
+  }
+
   listarItensCarrinho(userId: string) {
     this.db.object(`carrinhos/${userId}`).valueChanges().subscribe((cart: any) => {
       this.produtos = cart;
