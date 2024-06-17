@@ -3,7 +3,7 @@
 
   <div class="container">
     <div class="card" *ngFor="let plant of plants">
-      <img src="{{plant.imagem}}" alt="Planta">
+      <img [src]="plant.imagem" alt="Planta">
       <div class="card-content">
         <h3>{{plant.nome}}</h3>
         <p>{{plant.descricao}}</p>
@@ -13,7 +13,7 @@
         <button class="btn" (click)="adicionarAoCarrinho(plant)">Adicionar ao Carrinho</button>
       </div>
     </div>
-  </div>
+  </div>  
 
 </body>
 </html>
