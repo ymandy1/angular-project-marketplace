@@ -37,7 +37,6 @@ export class CadastroComponent {
       .createUserWithEmailAndPassword(this.email.value!, this.password.value!)
       .then((result) => {
         console.log(result.user);
-        localStorage.setItem('user', JSON.stringify(result.user));
         this.router.navigate(['/login']);
       })
       .catch((error) => {

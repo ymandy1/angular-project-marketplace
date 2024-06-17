@@ -1,50 +1,20 @@
 <html>
 <body>
-    <div class="container">
-      <div class="card">
-        <img src="../assets/img/login.jpg" alt="Planta">
-        <div class="card-content">
-          <h3>Nome da Planta</h3>
-          <p>Descrição breve da planta.</p>
-        </div>
-        <div class="card-actions">
-          <button class="btn">Adicionar ao Carrinho</button>
-          <a href="#" class="btn">Ver Detalhes</a>
-        </div>
+
+  <div class="container">
+    <div class="card" *ngFor="let plant of plants">
+      <img src="{{plant.imagem}}" alt="Planta">
+      <div class="card-content">
+        <h3>{{plant.nome}}</h3>
+        <p>{{plant.descricao}}</p>
+        <p>{{plant.preco}}</p>
       </div>
-        <div class="card">
-        <img src="../assets/img/planta1.png" alt="Planta">
-        <div class="card-content">
-          <h3>Nome da Planta</h3>
-          <p>Descrição breve da planta.</p>
-        </div>
-        <div class="card-actions">
-          <button class="btn">Adicionar ao Carrinho</button>
-          <a href="#" class="btn">Ver Detalhes</a>
-        </div>
-      </div>
-      <div class="card">
-        <img src="../assets/img/planta4.png" alt="Planta">
-        <div class="card-content">
-          <h3>Nome da Planta</h3>
-          <p>Descrição breve da planta.</p>
-        </div>
-        <div class="card-actions">
-          <button class="btn">Adicionar ao Carrinho</button>
-          <a href="#" class="btn">Ver Detalhes</a>
-        </div>
-      </div>
-      <div class="card">
-        <img src="../assets/img/planta3.png" alt="Planta">
-        <div class="card-content">
-          <h3>Nome da Planta</h3>
-          <p>Descrição breve da planta.</p>
-        </div>
-        <div class="card-actions">
-          <button class="btn">Adicionar ao Carrinho</button>
-          <a href="#" class="btn">Ver Detalhes</a>
-        </div>
+      <div class="card-actions">
+        <button class="btn">Adicionar ao Carrinho</button>
+        <a href="#" class="btn">Ver Detalhes</a>
       </div>
     </div>
-  </body>
-  </html>
+  </div>
+
+</body>
+</html>

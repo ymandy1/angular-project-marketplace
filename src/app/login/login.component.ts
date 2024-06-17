@@ -5,9 +5,6 @@ import { FormControl, Validators } from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 
-
-
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -16,6 +13,8 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 })
 
 export class LoginComponent {
+
+  userId: any;
 
   showErrorMessages: any;
 
@@ -39,6 +38,9 @@ export class LoginComponent {
       .signInWithEmailAndPassword(this.email.value!, this.password.value!)
       .then((result) => {
         console.log(result.user);
+        this.userId = result.user?.uid;
+        localStorage.setItem('user', JSON.stringify(result.user?.uid));
+
         this.router.navigate(['/marketplace']);
       })
       .catch((error) => {
@@ -48,6 +50,10 @@ export class LoginComponent {
 
 
     //this.router.navigate(['/layout/produto']);
+  }
+
+  getUserId(): string {
+    return this.userId;
   }
 
 

@@ -1,8 +1,8 @@
 <div>
-    <button (click)="showAddPlantForm()">Adicionar Produto</button>
+    <!-- <button (click)="showAddPlantForm()">Adicionar Produto</button>
     <div *ngIf="showAddPlant">
       <app-add-plant></app-add-plant>
-    </div>
+    </div> -->
     <div *ngFor="let plant of plants">
       <app-plant-item [plant]="plant"></app-plant-item>
     </div>

@@ -1,0 +1,55 @@
+<div *ngIf="showSuccessMessages" class="alert alert-success" role="alert">
+    Produto cadastrado com sucesso!
+</div>
+<div *ngIf="showErrorMessages" class="alert alert-danger" role="alert">
+    Erro ao cadastrar produto!
+</div>
+
+<h4>Cadastro de Produtos</h4>
+
+<form [formGroup]="formGroup">
+    <div class="mb-3">
+        <label for="nome" class="form-label">Nome</label>
+        <input type="email" class="form-control" id="nome" placeholder="Digite seu nome" formControlName="nome">
+        <div class="invalid-feedback" [style.display]="formGroup.controls.nome.invalid 
+    && formGroup.controls.nome.touched ? 'block' : 'none'">
+            Digite o nome corretamente.</div>
+    </div>
+
+    <div class="mb-3">
+        <label for="preco" class="form-label">Preço</label>
+        <input type="text" class="form-control" id="preco" placeholder="0,00" formControlName="preco">
+    </div>
+
+    <div class="mb-3">
+        <label for="desc" class="form-label">Descrição</label>
+        <input type="text" class="form-control" id="desc" placeholder="Digite seu nome" formControlName="desc">
+        <div class="invalid-feedback" [style.display]="formGroup.controls.nome.invalid 
+    && formGroup.controls.nome.touched ? 'block' : 'none'">
+            Descrição</div>
+    </div>
+
+    <div class="mb-3">
+        <label for="categoria" class="form-label">Categoria</label>
+        <input type="text" class="form-control" id="categoria" placeholder="Digite seu nome" formControlName="categoria">
+        <div class="invalid-feedback" [style.display]="formGroup.controls.nome.invalid 
+    && formGroup.controls.nome.touched ? 'block' : 'none'">
+            Digite a categoria corretamente</div>
+    </div>
+
+    <div class="mb-3">
+        <label for="imagem" class="form-label">Imagem</label>
+        <input type="text" id="imagem" placeholder="URL da imagem" formControlName="imagem">
+    </div>
+
+    <div class="mb-3">
+        <label for="upload" class="form-label">Imagem</label>
+        <input type="file" class="form-control" id="upload" (change)="selectFile($event)">
+    </div>
+
+    
+
+
+
+    <button class="btn btn-primary" (click)="salvar()">Salvar</button>
+</form>
