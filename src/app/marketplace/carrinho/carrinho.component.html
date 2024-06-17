@@ -1,12 +1,13 @@
+
 <div class="col-md-8">
     <h2>Seu Carrinho</h2>
-    <div class="card mb-3" *ngFor="let data of getValues(produtos)">
-        <div class="card-body">
-
-            <h5 class="card-title">{{ data }}</h5>
-            <p class="card-text">{{ data }}</p>
-            <p class="card-text">{{ data }}</p>
+    <div class="card mb-3" *ngFor="let dataArray of getValues(produtos)">
+        <div class="card-body" *ngFor="let data of dataArray">
+            <h5 class="card-title">{{ data.nome }}</h5>
+            <p class="card-text">{{ data.descricao }}</p>
+            <p class="card-text">{{ data.preco }}</p>
             <button class="btn btn-danger">Remover</button>
+            
         </div>
     </div>
 </div>

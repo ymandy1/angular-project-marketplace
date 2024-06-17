@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CarrinhoModel } from '../model/carrinho.model';
 import { ProdutoModel } from '../../../vender-produto/model/produto.model';
+import { take } from 'rxjs/operators';
 
 
 @Injectable({
@@ -17,6 +18,30 @@ export class CarrinhoService {
 
   salvar(carrinho: CarrinhoModel, produto: ProdutoModel) {
     return this.db.list('carrinhos').push(produto);
+  }
+
+  adicionarProduto(userId: string, produto: ProdutoModel) {
+    const ref = this.db.object<CarrinhoModel>(`carrinhos/${userId}`);
+    ref.valueChanges().pipe(take(1)).subscribe(carrinho => {
+      if (carrinho) {
+
+        if (!Array.isArray(carrinho.produtos)) {
+          carrinho.produtos = [];
+
+        } else {
+          // carrinho.produtos.push(produto);
+        }
+        carrinho.produtos.push(produto);
+        ref.update(carrinho);
+
+      } else {
+
+        ref.set({
+          produtos: [produto],
+          quantidade: 1
+        });
+      }
+    });
   }
 
   excluir(key: any) {

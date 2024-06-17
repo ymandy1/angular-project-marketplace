@@ -28,7 +28,7 @@ export class MainPageComponent {
   }
 
   adicionarAoCarrinho(plant: any) {
-    this.carrinhoService.alterar(this.userId, plant);
+    this.carrinhoService.adicionarProduto(this.userId, plant);
   }
 
 }

@@ -39,7 +39,7 @@ export class CarrinhoComponent {
     this.checkCartExists(this.userId).subscribe(exists => {
       if (!exists) {
         console.log("criar")
-        this.criarCarrinho(this.userId);
+        this.criarCarrinho(this.userId, new ProdutoModel());
       } else {
         console.log("não criar")
       }
@@ -52,27 +52,27 @@ export class CarrinhoComponent {
     );
   }
 
-  criarCarrinho(userId: string) {
+  criarCarrinho(userId: string, produto: ProdutoModel) {
     this.db.object(`carrinhos/${userId}`).set({
       userId: userId,
-      produtos: []
+      produtos: [produto.nome = ""] // Aqui estamos adicionando um objeto do tipo ProdutoModel ao array de produtos
     });
   }
 
   adicionarAoCarrinho(plant: any) {
-    this.carrinhoService.alterar(this.userId, plant);
+    this.carrinhoService.adicionarProduto(this.userId, plant);
   }
 
   listarItensCarrinho(userId: string) {
     this.db.object(`carrinhos/${userId}`).valueChanges().subscribe((cart: any) => {
       this.produtos = cart;
+      console.log('teste', cart);
     }
     );
   }
 
   getValues(obj: object) {
-
-    console.log(Object.values(obj));
+    console.log('getValues', Object.values(obj));
     return Object.values(obj);
   }
 
