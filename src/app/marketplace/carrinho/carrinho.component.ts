@@ -68,6 +68,16 @@ export class CarrinhoComponent {
 
   removerDoCarrinho(plant: any) {
     this.carrinhoService.removerProduto(this.userId, plant);
+    Swal.fire({
+      title: 'Produto removido',
+      text: 'Seu produto foi removido do carrinho com sucesso.',
+      icon: 'success',
+      confirmButtonText: 'Ok'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.router2.navigate(['/marketplace']); // redireciona para a tela principal
+      }
+    });
   }
 
   comprar(data: any) {
