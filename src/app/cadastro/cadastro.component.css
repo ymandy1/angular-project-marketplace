@@ -62,6 +62,9 @@ i {
   color: #96a856;
 }
 
+#formContainer{
+padding: 20px 0px;
+}
 
 label {
   display: block;

@@ -7,9 +7,6 @@
   <title>projeto</title>
 </head>
 <body>
-  <div *ngIf="showErrorMessages" class="alert alert-danger" role="alert">
-    Erro ao cadastrar usuário!
-  </div>
 <div id="formContainer" class="d-flex flex-column justify-content-center align-items-center p-2">
 
   <h2>CADASTRO<br>
@@ -35,6 +32,9 @@
     </div>
 
     <button class="btn btn-primary" (click)="cadastrarUsuario()">Cadastrar</button>
+    <div *ngIf="showErrorMessages" class="alert alert-danger" role="alert">
+      Erro ao cadastrar usuário!
+    </div>
     <br>
     <a class="sign_up" (click)="redirecionarParaLogin()" >Já tem conta? Fazer login</a>
     <br>

@@ -1,6 +1,23 @@
-<div *ngIf="showSuccessMessages" class="alert alert-success" role="alert">
-    Produto cadastrado com sucesso!
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vender produto</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<div class="container-header">
+    <h1>GREENPLACE</h1>
+    <nav>
+        <ul>
+          <li><a routerLink="/editarperfil"><i class="fa-solid fa-pen"></i>Editar Perfil</a></li>
+          <li><a routerLink="/carrinho"><i class="fa-solid fa-shopping-cart"></i>Carrinho</a></li>
+          <li><a routerLink="/vender-produto"><i class="fa-solid fa-money-bill"></i>Quero Vender!</a></li>
+          <li><a routerLink="/meusprodutos"><i class="fa-solid fa-money-bill"></i>Meus anúncios</a></li>
+          <li><a routerLink="/login"><i class="fa-solid fa-sign-out-alt"></i>Sair</a></li>
+        </ul>
+      </nav>          
 </div>
+
 <div *ngIf="showErrorMessages" class="alert alert-danger" role="alert">
     Erro ao cadastrar produto!
 </div>
@@ -47,6 +64,9 @@
         <input type="file" class="form-control" id="upload" (change)="selectFile($event)">
     </div>
 
+    <div *ngIf="showSuccessMessages" class="alert alert-success" role="alert">
+        Produto cadastrado com sucesso!
+    </div>
     
 
 
