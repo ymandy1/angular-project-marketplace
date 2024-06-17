@@ -6,6 +6,9 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { LoginComponent } from '../../login/login.component';
 import { ActivatedRoute } from '@angular/router';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { ProdutoModel } from '../../vender-produto/model/produto.model';
 
 
 @Component({
@@ -15,8 +18,6 @@ import { AngularFireDatabase } from '@angular/fire/compat/database';
 })
 export class CarrinhoComponent {
 
-
-
   constructor(private db: AngularFireDatabase, private carrinhoService: CarrinhoService, private router: ActivatedRoute, public afAuth: AngularFireAuth, public login: LoginComponent, private storage: AngularFireStorage) { }
 
   showSuccessMessages = false;
@@ -24,30 +25,31 @@ export class CarrinhoComponent {
 
   key?: string;
   carrinho = new CarrinhoModel();
-  userId = localStorage.getItem('user');
+  userId: any;
+  produtos = {};
+
+  // aqui eu preciso tirar as aspas do começo e do final do userId
+
 
   ngOnInit(): void {
-    if (this.verificarCarrinho(this.userId!)) {
-      // this.atualizarCarrinho(this.userId!, this.key!);
-      console.log('Carrinho existe');
-    }
-    else {
-      this.criarCarrinho(localStorage.getItem('user')!);
-      console.log('Carrinho criado');
-    }
-  }
+    this.userId = localStorage.getItem('user');
 
-  verificarCarrinho(userId: string): Boolean {
-    // preciso tirar as aspas do começo e do fim do userId
-    userId = userId.replace(/['"]+/g, '');
-    console.log('userId: ', userId);
-    let carrinhoExists = false;
-    this.db.object(`carrinhos/${userId}`).valueChanges().subscribe(carrinho => {
-      if (carrinho) {
-        carrinhoExists = true;
+    this.listarItensCarrinho(this.userId);
+
+    this.checkCartExists(this.userId).subscribe(exists => {
+      if (!exists) {
+        console.log("criar")
+        this.criarCarrinho(this.userId);
+      } else {
+        console.log("não criar")
       }
     });
-    return carrinhoExists;
+  }
+
+  checkCartExists(userId: string): Observable<boolean> {
+    return this.db.object(`carrinhos/${userId}`).valueChanges().pipe(
+      map(cart => cart ? true : false)
+    );
   }
 
   criarCarrinho(userId: string) {
@@ -57,15 +59,23 @@ export class CarrinhoComponent {
     });
   }
 
-  // atualizarCarrinho(userId: string, produtoId: string) {
-  //   this.db.object(`carrinhos/${userId}`).valueChanges().subscribe(carrinho => {
-  //     let produtos = carrinho?.produtos;
-  //     produtos?.push(produtoId);
-  //     this.db.object(`carrinhos/${userId}`).update({
-  //       produtos: produtos
-  //     });
-  //   });
-  // }
+  adicionarAoCarrinho(plant: any) {
+    this.carrinhoService.alterar(this.userId, plant);
+  }
+
+  listarItensCarrinho(userId: string) {
+    this.db.object(`carrinhos/${userId}`).valueChanges().subscribe((cart: any) => {
+      this.produtos = cart;
+    }
+    );
+  }
+
+  getValues(obj: object) {
+
+    console.log(Object.values(obj));
+    return Object.values(obj);
+  }
+
 
 
 

@@ -16,23 +16,23 @@ export class CarrinhoService {
     private storage: AngularFireStorage) { }
 
   salvar(carrinho: CarrinhoModel, produto: ProdutoModel) {
-    return this.db.list('carrinho').push(produto);
+    return this.db.list('carrinhos').push(produto);
   }
 
   excluir(key: any) {
-    return this.db.object('carrinho/' + key).remove();
+    return this.db.object('carrinhos/' + key).remove();
   }
 
   carregar(key: any): Observable<any> {
-    return this.db.object('carrinho/' + key).valueChanges();
+    return this.db.object('carrinhos/' + key).valueChanges();
   }
 
   alterar(key: any, carrinho: CarrinhoModel) {
-    return this.db.object('carrinho/' + key).update(carrinho);
+    return this.db.object('carrinhos/' + key).update(carrinho);
   }
 
   listar() {
-    return this.db.list('carrinho').snapshotChanges()
+    return this.db.list('carrinhos').snapshotChanges()
       .pipe(
         map(changes => {
           console.log(changes);
@@ -43,6 +43,8 @@ export class CarrinhoService {
         })
       );
   }
+
+
 
   // uploadImagem(file: any) {
   //   const path = 'imagens/' + file.name;
