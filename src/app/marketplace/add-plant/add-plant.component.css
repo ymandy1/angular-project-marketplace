@@ -1,0 +1,46 @@
+/* add-plant.component.css */
+
+.add-plant-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .add-plant-form h3 {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .add-plant-form .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .add-plant-form label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .add-plant-form input,
+  .add-plant-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .add-plant-form button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .add-plant-form button:hover {
+    background-color: #0056b3;
+  }
+  
