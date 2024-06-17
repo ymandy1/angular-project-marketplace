@@ -9,6 +9,9 @@ import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ProdutoModel } from '../../vender-produto/model/produto.model';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -18,7 +21,7 @@ import { ProdutoModel } from '../../vender-produto/model/produto.model';
 })
 export class CarrinhoComponent {
 
-  constructor(private db: AngularFireDatabase, private carrinhoService: CarrinhoService, private router: ActivatedRoute, public afAuth: AngularFireAuth, public login: LoginComponent, private storage: AngularFireStorage) { }
+  constructor(private router2: Router, private db: AngularFireDatabase, private carrinhoService: CarrinhoService, private router: ActivatedRoute, public afAuth: AngularFireAuth, public login: LoginComponent, private storage: AngularFireStorage) { }
 
   showSuccessMessages = false;
   showErrorMessages = false;
@@ -66,6 +69,24 @@ export class CarrinhoComponent {
   removerDoCarrinho(plant: any) {
     this.carrinhoService.removerProduto(this.userId, plant);
   }
+
+  comprar(data: any) {
+
+    this.removerDoCarrinho(data);
+
+    Swal.fire({
+      title: 'Compra realizada!',
+      text: 'Seu pedido foi realizado com sucesso.',
+      icon: 'success',
+      confirmButtonText: 'Ok'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.router2.navigate(['/marketplace']); // redireciona para a tela principal
+      }
+    });
+
+  }
+
 
   listarItensCarrinho(userId: string) {
     this.db.object(`carrinhos/${userId}`).valueChanges().subscribe((cart: any) => {
