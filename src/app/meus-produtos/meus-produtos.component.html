@@ -1,0 +1,16 @@
+<h1>Minhas plantas</h1>
+
+<div *ngFor="let produto of produtos">
+    <h2> {{ produto[1].nome }} </h2>
+    <p> {{produto[1].descricao}} </p>
+    <p> {{produto[1].preco}} </p>
+    <img src="{{produto[1].imagem}}"> 
+    <form #editForm="ngForm" (ngSubmit)="editarProduto(produto[0], editForm.value)">
+      <input type="text" name="nome" [(ngModel)]="produto[1].nome">
+      <input type="text" name="descricao" [(ngModel)]="produto[1].descricao">
+      <!-- Adicione mais campos conforme necessário -->
+  
+      <button type="submit">Editar</button>
+    </form>
+    <button (click)="deletarProduto(produto[0])">Deletar</button>
+</div>
