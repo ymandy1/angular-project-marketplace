@@ -5,6 +5,9 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { MarketplaceComponent } from './marketplace/marketplace.component';
 import { VenderProdutoComponent } from './vender-produto/vender-produto.component';
+import { CarrinhoComponent } from './marketplace/carrinho/carrinho.component';
+import { EditarperfilComponent } from './editarperfil/editarperfil.component';
+import { MeusProdutosComponent } from './meus-produtos/meus-produtos.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -12,7 +15,10 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: LandingPageComponent },
   { path: 'marketplace', component: MarketplaceComponent },
-  { path: 'vender-produto', component: VenderProdutoComponent }
+  { path: 'vender-produto', component: VenderProdutoComponent },
+  { path: 'carrinho', component: CarrinhoComponent },
+  { path: 'editarperfil', component: EditarperfilComponent },
+  { path: 'meusprodutos', component: MeusProdutosComponent }
 ];
 
 @NgModule({

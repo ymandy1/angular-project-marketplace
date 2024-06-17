@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { PlantListComponent } from '../plant-list/plant-list.component';
 import { ProdutoService } from '../../vender-produto/service/produto.service';
+import { CarrinhoService } from '../../marketplace/carrinho/service/carrinho.service';
 
 @Component({
   selector: 'app-main-page',
@@ -9,7 +10,7 @@ import { ProdutoService } from '../../vender-produto/service/produto.service';
 })
 export class MainPageComponent {
 
-  constructor(private produtoService: ProdutoService) { }
+  constructor(private produtoService: ProdutoService, private carrinhoService: CarrinhoService) { }
 
   plants: any[] = [];
 
@@ -22,5 +23,8 @@ export class MainPageComponent {
 
   }
 
+  // adicionarAoCarrinho(plant: any) {
+  //   this.carrinhoService.salvar(plant,);
+  // }
 
 }

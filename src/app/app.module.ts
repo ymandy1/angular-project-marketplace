@@ -7,7 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { MarketplaceComponent } from './marketplace/marketplace.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire/compat';
 import { EditarperfilComponent } from './editarperfil/editarperfil.component';
 import { CarrinhoComponent } from '../app/marketplace/carrinho/carrinho.component';
@@ -18,6 +18,7 @@ import { PlantListComponent } from './marketplace/plant-list/plant-list.componen
 import { MainPageComponent } from './marketplace/main-page/main-page.component';
 import { HeaderComponent } from './marketplace/header/header.component';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { MeusProdutosComponent } from '../app/meus-produtos/meus-produtos.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
     PlantItemComponent,
     PlantListComponent,
     MainPageComponent,
-    HeaderComponent
+    HeaderComponent,
+    MeusProdutosComponent
 
   ],
   imports: [
@@ -41,7 +43,8 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
     AppRoutingModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    FormsModule
   ],
   providers: [LoginComponent, PlantItemComponent, PlantListComponent, MainPageComponent, HeaderComponent, VenderProdutoComponent, AddPlantComponent, CarrinhoComponent, EditarperfilComponent, MarketplaceComponent, LandingPageComponent, CadastroComponent, LoginComponent],
   bootstrap: [AppComponent]

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { FormControl, Validators } from '@angular/forms';
 
 
@@ -27,7 +28,7 @@ export class CadastroComponent {
   password = new FormControl('',
     [Validators.required]);
   constructor(private router: Router,
-    public afAuth: AngularFireAuth,) { }
+    public afAuth: AngularFireAuth, private db: AngularFireDatabase) { }
 
   cadastrarUsuario() {
     console.log('Login: ' + this.email.value);
@@ -37,6 +38,15 @@ export class CadastroComponent {
       .createUserWithEmailAndPassword(this.email.value!, this.password.value!)
       .then((result) => {
         console.log(result.user);
+
+        // Salve os dados do usuário na tabela 'users'
+        this.db.object(`users/${result.user!.uid}`).set({
+          username: this.username.value,
+          email: this.email.value,
+          // Adicione mais campos conforme necessário
+        });
+
+
         this.router.navigate(['/login']);
       })
       .catch((error) => {
